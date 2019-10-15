@@ -13,14 +13,14 @@ def get_data_set(name="train"):
 
     maybe_download_and_extract()
 
-    folder_name = "cifar_10"
+    folder_name = "cifar-10-batches-py"
 
-    f = open('./data_set/'+folder_name+'/batches.meta', 'rb')
+    f = open('/home/jovyan/input/cifar/'+folder_name+'/batches.meta', 'rb')
     f.close()
 
     if name is "train":
         for i in range(5):
-            f = open('./data_set/'+folder_name+'/data_batch_' + str(i + 1), 'rb')
+            f = open('/home/jovyan/input/cifar/'+folder_name+'/data_batch_' + str(i + 1), 'rb')
             datadict = pickle.load(f, encoding='latin1')
             f.close()
 
@@ -40,7 +40,7 @@ def get_data_set(name="train"):
                 y = np.concatenate((y, _Y), axis=0)
 
     elif name is "test":
-        f = open('./data_set/'+folder_name+'/test_batch', 'rb')
+        f = open('/home/jovyan/input/cifar/'+folder_name+'/test_batch', 'rb')
         datadict = pickle.load(f, encoding='latin1')
         f.close()
 
@@ -72,7 +72,7 @@ def _print_download_progress(count, block_size, total_size):
 
 
 def maybe_download_and_extract():
-    main_directory = "./data_set/"
+    main_directory = "/home/jovyan/input/cifar/"
     cifar_10_directory = main_directory+"cifar_10/"
     if not os.path.exists(main_directory):
         os.makedirs(main_directory)
