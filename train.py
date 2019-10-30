@@ -19,7 +19,7 @@ epoch_start = 0
 # PARAMS
 _BATCH_SIZE = 128
 _EPOCH = 60
-_SAVE_PATH = "./tensorboard/cifar-10-v1.0.0/"
+_SAVE_PATH = "/home/jovyan/models/cifar-10-v1.0.0/"
 
 
 # LOSS AND OPTIMIZER
@@ -37,7 +37,7 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
 # SAVER
 merged = tf.summary.merge_all()
-saver = tf.train.Saver()
+saver = tf.train.Saver(save_relative_paths=True)
 sess = tf.Session()
 train_writer = tf.summary.FileWriter(_SAVE_PATH, sess.graph)
 
